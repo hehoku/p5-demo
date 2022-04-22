@@ -1,5 +1,12 @@
 import { w, h } from '../utils/constants'
 
+let x = 100
+const y = h / 2
+const bodyHeight = 110
+const neckHeight = 30
+const radius = 45
+const ny = y - bodyHeight - neckHeight - radius
+
 const setup = (p, canvasParentRef) => {
   p.createCanvas(w, h).parent(canvasParentRef)
   p.background(29, 215, 95)
@@ -10,35 +17,35 @@ const setup = (p, canvasParentRef) => {
 const draw = p => {
   // neck
   p.stroke(102)
-  p.line(266, 257, 266, 162)
-  p.line(276, 257, 276, 162)
-  p.line(286, 257, 286, 162)
+  p.line(x + 2, y - bodyHeight, x + 2, ny)
+  p.line(x + 12, y - bodyHeight, x + 12, ny)
+  p.line(x + 22, y - bodyHeight, x + 22, ny)
 
   // antennae
-  p.line(276, 155, 246, 112)
-  p.line(276, 155, 306, 56)
-  p.line(276, 155, 342, 170)
+  p.line(x + 12, ny, x - 18, ny - 43)
+  p.line(x + 12, ny, x + 42, ny - 99)
+  p.line(x + 12, ny, x + 78, ny + 15)
 
   // body
   p.noStroke()
   p.fill(102)
-  p.ellipse(264, 377, 33, 33)
+  p.ellipse(x, y - 33, 33, 33)
   p.fill(0)
-  p.rect(219, 257, 90, 120)
+  p.rect(x - 45, y - bodyHeight, 90, bodyHeight - 33)
   p.fill(102)
-  p.rect(219, 274, 90, 6)
+  p.rect(x - 45, y - bodyHeight + 17, 90, 6)
 
   // head
   p.fill(0)
-  p.ellipse(276, 155, 45, 45)
+  p.ellipse(x + 12, ny, radius, radius)
   p.fill(255)
-  p.ellipse(288, 150, 14, 14)
+  p.ellipse(x + 24, ny - 6, 14, 14)
   p.fill(0)
-  p.ellipse(288, 150, 3, 3)
+  p.ellipse(x + 24, ny - 6, 3, 3)
   p.fill(153)
-  p.ellipse(263, 148, 5, 5)
-  p.ellipse(296, 130, 4, 4)
-  p.ellipse(305, 162, 3, 3)
+  p.ellipse(x, ny - 8, 5, 5)
+  p.ellipse(x + 30, ny - 26, 4, 4)
+  p.ellipse(x + 41, ny + 6, 3, 3)
 }
 
 export { setup, draw }
