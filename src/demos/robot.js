@@ -1,11 +1,12 @@
 import { w, h } from '../utils/constants'
 
-let x = 100
+let x = 60
 const y = h / 2
-const bodyHeight = 110
-const neckHeight = 30
+let bodyHeight = 160
+let neckHeight = 70
 const radius = 45
 const ny = y - bodyHeight - neckHeight - radius
+const easing = 0.04
 
 const setup = (p, canvasParentRef) => {
   p.createCanvas(w, h).parent(canvasParentRef)
@@ -15,11 +16,18 @@ const setup = (p, canvasParentRef) => {
 }
 
 const draw = p => {
+  const targetX = p.mouseX
+  x += (targetX - x) * easing
+  if (p.mouseIsPressed) {
+    neckHeight = 16
+    bodyHeight = 90
+  } else {
+    neckHeight = 70
+    bodyHeight = 160
+  }
   // neck
   p.stroke(102)
-  p.line(x + 2, y - bodyHeight, x + 2, ny)
   p.line(x + 12, y - bodyHeight, x + 12, ny)
-  p.line(x + 22, y - bodyHeight, x + 22, ny)
 
   // antennae
   p.line(x + 12, ny, x - 18, ny - 43)
@@ -32,8 +40,6 @@ const draw = p => {
   p.ellipse(x, y - 33, 33, 33)
   p.fill(0)
   p.rect(x - 45, y - bodyHeight, 90, bodyHeight - 33)
-  p.fill(102)
-  p.rect(x - 45, y - bodyHeight + 17, 90, 6)
 
   // head
   p.fill(0)
@@ -42,10 +48,6 @@ const draw = p => {
   p.ellipse(x + 24, ny - 6, 14, 14)
   p.fill(0)
   p.ellipse(x + 24, ny - 6, 3, 3)
-  p.fill(153)
-  p.ellipse(x, ny - 8, 5, 5)
-  p.ellipse(x + 30, ny - 26, 4, 4)
-  p.ellipse(x + 41, ny + 6, 3, 3)
 }
 
 export { setup, draw }
