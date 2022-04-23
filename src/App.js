@@ -1,6 +1,6 @@
 import './App.css'
 import Sketch from 'react-p5'
-import { setup, draw } from './demos/findCursor'
+import { setup, draw } from './demos/inputText'
 
 function App () {
   return <Sketch setup={setup} draw={draw} />
