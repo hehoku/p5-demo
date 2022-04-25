@@ -1,9 +1,9 @@
 import './App.css'
 import Sketch from 'react-p5'
-import { preload, setup, draw } from './demos/robot'
+import { setup, draw } from './demos/bounceWall'
 
 function App () {
-  return <Sketch setup={setup} draw={draw} preload={preload} />
+  return <Sketch setup={setup} draw={draw} />
 }
 
 export default App
