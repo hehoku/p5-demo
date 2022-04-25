@@ -5,17 +5,30 @@ const y = h / 2
 let bodyHeight = 180
 let neckHeight = 40
 const radius = 45
-const easing = 0.04
+let img
+
+function preload (p) {
+  // path relative to /public, use `./logo512.png` for local files
+  img = p.loadImage('./logo512.png')
+  console.log(img)
+}
 
 const setup = (p, canvasParentRef) => {
   p.createCanvas(w, h).parent(canvasParentRef)
   p.strokeWeight(2)
   p.ellipseMode(p.RADIUS)
+  p.textFont('Source Code Pro')
 }
 
 const draw = p => {
   p.clear()
   p.background(29, 215, 95)
+  p.image(img, x, y, radius * 2, radius * 2)
+
+  // text
+  p.textSize(28)
+  p.text('on small step for man ...', 25, 60)
+
   let ny = -1 * (bodyHeight + neckHeight + radius)
   p.translate(p.mouseX, y)
   if (p.mouseIsPressed) {
@@ -53,4 +66,4 @@ const draw = p => {
   p.ellipse(24, ny - 6, 3, 3)
 }
 
-export { setup, draw }
+export { preload, setup, draw }
