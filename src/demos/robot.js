@@ -2,10 +2,9 @@ import { w, h } from '../utils/constants'
 
 let x = 60
 const y = h / 2
-let bodyHeight = 160
-let neckHeight = 70
+let bodyHeight = 180
+let neckHeight = 40
 const radius = 45
-const ny = y - bodyHeight - neckHeight - radius
 const easing = 0.04
 
 const setup = (p, canvasParentRef) => {
@@ -17,38 +16,41 @@ const setup = (p, canvasParentRef) => {
 const draw = p => {
   p.clear()
   p.background(29, 215, 95)
-  const targetX = p.mouseX
-  x += (targetX - x) * easing
+  let ny = -1 * (bodyHeight + neckHeight + radius)
+  p.translate(p.mouseX, y)
   if (p.mouseIsPressed) {
-    neckHeight = 16
-    bodyHeight = 90
+    p.scale(1.0)
   } else {
-    neckHeight = 70
-    bodyHeight = 160
+    p.scale(0.6)
   }
   // neck
   p.stroke(102)
-  p.line(x + 12, y - bodyHeight, x + 12, ny)
+  p.line(12, -bodyHeight, 12, ny)
 
-  // antennae
-  p.line(x + 12, ny, x - 18, ny - 43)
-  p.line(x + 12, ny, x + 42, ny - 99)
-  p.line(x + 12, ny, x + 78, ny + 15)
+  // hair
+  p.push()
+  p.translate(12, ny)
+  let angle = -p.PI / 40.0
+  for (let i = 0; i < 40; i++) {
+    p.line(radius + 20, 0, 0, 0)
+    p.rotate(angle)
+  }
+  p.pop()
 
   // body
   p.noStroke()
   p.fill(102)
-  p.ellipse(x, y - 33, 33, 33)
+  p.ellipse(0, -33, 33, 33)
   p.fill(0)
-  p.rect(x - 45, y - bodyHeight, 90, bodyHeight - 33)
+  p.rect(-45, -bodyHeight, 90, bodyHeight - 33)
 
   // head
   p.fill(0)
-  p.ellipse(x + 12, ny, radius, radius)
+  p.ellipse(12, ny, radius, radius)
   p.fill(255)
-  p.ellipse(x + 24, ny - 6, 14, 14)
+  p.ellipse(24, ny - 6, 14, 14)
   p.fill(0)
-  p.ellipse(x + 24, ny - 6, 3, 3)
+  p.ellipse(24, ny - 6, 3, 3)
 }
 
 export { setup, draw }
