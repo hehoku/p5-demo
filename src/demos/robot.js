@@ -10,12 +10,13 @@ const easing = 0.04
 
 const setup = (p, canvasParentRef) => {
   p.createCanvas(w, h).parent(canvasParentRef)
-  p.background(29, 215, 95)
   p.strokeWeight(2)
   p.ellipseMode(p.RADIUS)
 }
 
 const draw = p => {
+  p.clear()
+  p.background(29, 215, 95)
   const targetX = p.mouseX
   x += (targetX - x) * easing
   if (p.mouseIsPressed) {
