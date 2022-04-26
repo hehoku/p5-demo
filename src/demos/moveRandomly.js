@@ -14,6 +14,8 @@ function setup (p, canvasParentRef) {
 function draw (p) {
   x += p.random(-speed, speed)
   y += p.random(-speed, speed)
+  x = p.constrain(x, 0, w)
+  y = p.constrain(y, 0, h)
   p.ellipse(x, y, diameter, diameter)
 }
 
