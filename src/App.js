@@ -1,6 +1,6 @@
 import './App.css'
 import Sketch from 'react-p5'
-import { setup, draw } from './demos/bounceWall'
+import { setup, draw } from './demos/moveRandomly'
 
 function App () {
   return <Sketch setup={setup} draw={draw} />
