@@ -1,12 +1,5 @@
 import { w, h } from '../utils/constants'
 
-let x = 180
-let y = 400
-let bodyHeight = 153
-let neckHeight = 56
-const radius = 45
-let angle = 0.0
-
 const setup = (p, canvasParentRef) => {
   p.createCanvas(w, h).parent(canvasParentRef)
   p.strokeWeight(2)
@@ -15,22 +8,18 @@ const setup = (p, canvasParentRef) => {
 }
 
 const draw = p => {
-  // change position by a small random amount
-  x += p.random(-4, 4)
-  y += p.random(-1, 1)
-
-  // change height of neck
-  neckHeight = 80 + p.sin(angle) * 30
-  angle += 0.05
-
   p.clear()
   p.background(29, 215, 95)
+  drawRobot(p, 120, 420, 110, 140)
+  drawRobot(p, 270, 460, 260, 95)
+  drawRobot(p, 420, 310, 80, 10)
+  drawRobot(p, 570, 390, 180, 40)
+}
 
-  // text
-  p.textSize(28)
-  p.text('on small step for man ...', 25, 60)
+function drawRobot (p, x, y, bodyHeight, neckHeight) {
+  var radius = 45
+  var ny = y - bodyHeight - neckHeight - radius
 
-  let ny = y - 1 * (bodyHeight + neckHeight + radius)
   // neck
   p.stroke(102)
   p.line(x + 2, y - bodyHeight, x + 2, ny)
@@ -58,6 +47,11 @@ const draw = p => {
   p.ellipse(x + 24, ny - 6, 14, 14)
   p.fill(0)
   p.ellipse(x + 24, ny - 6, 3, 3)
+  p.fill(153)
+  p.ellipse(x, ny - 8, 5, 5)
+  p.ellipse(x, ny - 8, 5, 5)
+  p.ellipse(x + 30, ny - 26, 4, 4)
+  p.ellipse(x + 41, ny + 6, 3, 3)
 }
 
 export { setup, draw }
