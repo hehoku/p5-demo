@@ -1,4 +1,4 @@
-const w = window.innerWidth
-const h = window.innerHeight
+const w = 500;
+const h = 500;
 
-export { w, h }
+export { w, h };

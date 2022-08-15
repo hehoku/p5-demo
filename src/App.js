@@ -1,9 +1,9 @@
-import './App.css'
-import Sketch from 'react-p5'
-import { setup, draw } from './demos/robot'
+import "./App.css";
+import Sketch from "react-p5";
+import { setup, draw } from "./yao";
 
-function App () {
-  return <Sketch setup={setup} draw={draw} />
+function App() {
+  return <Sketch setup={setup} draw={draw} />;
 }
 
-export default App
+export default App;
